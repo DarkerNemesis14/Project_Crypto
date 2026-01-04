@@ -1,37 +1,41 @@
-# Project_Crypto
-A simple python-based cryptography project for encrypting and decrypting text using custom keys.
+# Classic Cipher Client
 
-## Contents
-- **`main.py`** – Main script to run encryption/decryption workflows.
-- **`src/`** – Storage python modules implementing cryptographic functions and helpers.
-- **`keys/`** – Storage for generated keys.
-- **`texts/`** – Storage for input and output files.
-
-## Features
-- Encrypt plaintext to ciphertext  
-- Decrypt ciphertext back to plaintext  
-- Simple key management for cryptographic workflows  
-- Easy to extend with additional algorithms
+A Python command-line tool that provides a unified interface for classic ciphers: Caesar, Affine, Playfair, and Hill. It uses `argparse` subcommands for encryption/decryption, and the Hill cipher additionally supports `crack` to recover a 2x2 key from known plaintext–ciphertext pairs. 
 
 ## Requirements
-- Python 3.7 or higher  
-- **No additional packages required**
+- Python 3.7+ (standard library only). 
 
-## Project Structure
+## Quick start
+Show help:
 ```bash
-Project_Crypto/
-├── keys/
-│   └── (key files)
-├── src/
-│   └── (crypto modules)
-├── texts/
-│   └── (text files)
-├── main.py
-└── README.md
+python main.py -h
+```
+## Cipher modes
+```bash
+python main.py hill -h
 ```
 
-## Usage
-- Write your plaintext in `text/plain.txt`
-- Write the keys in the `keys/` directory
-- Run the program: `python main.py`
-- Outputs will be saved in `texts/` directory
+## HillCipher usage (2x2)
+### Encrypt:
+
+```bash
+python main.py hill enc --key 3 2 8 5 -f texts/plain.txt -o texts/cipher_hill.txt
+```
+### Decrypt:
+
+```bash
+python main.py hill dec --key 3 2 8 5 -f texts/cipher_hill.txt -o texts/plain_hill.txt
+```
+### Crack key (known-plaintext):
+
+```bash
+python main.py hill crack --plain-file texts/plain.txt --ctext-file texts/cipher_hill.txt -o keys/hill_cracked.txt
+```
+## Project structure
+```
+Project_Crypto/
+├── keys/     # Key files (including cracked keys)
+├── src/      # Cipher implementations
+├── texts/    # Sample input/output texts
+└── main.py   # CLI entry point
+```
