@@ -14,6 +14,12 @@ python main.py -h
 ```bash
 python main.py hill -h
 ```
+## Unified CLI Interface
+All cipher operations follow the same general command pattern:
+`python main.py <cipher> <mode> [options]`
+- cipher: The algorithm to use (caesar, affine, playfair, or hill).
+- mode: The operation mode (enc for encryption, dec for decryption).
+- [options]: Cipher-specific parameters such as keys, input files, and output files.
 
 ## HillCipher usage (2x2)
 ### Encrypt:
